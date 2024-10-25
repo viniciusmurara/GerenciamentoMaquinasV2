@@ -17,6 +17,7 @@ public class PainelControle extends JFrame implements Subscriber {
     private JPanel machinePanel;
     private ArrayList<Maquina> maquinas = new ArrayList<>();
 
+
     public PainelControle() {
         setTitle("Painel de Controle de Máquinas");
         setSize(800, 500);
@@ -66,10 +67,9 @@ public class PainelControle extends JFrame implements Subscriber {
             maquina = new Resfriador();
         }
 
-        maquina.subscribe(this); // Inscreve o painel como observador da máquina
+        maquina.subscribe(this);
         maquinas.add(maquina);
 
-        // Painel de controle individual para cada máquina
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), type, TitledBorder.CENTER, TitledBorder.TOP));
@@ -81,7 +81,7 @@ public class PainelControle extends JFrame implements Subscriber {
         gbc.anchor = GridBagConstraints.WEST;
 
         JLabel tempLabel = new JLabel("Temperatura: 0.0");
-        JLabel percentLabel = new JLabel("Percentual: 0.0");
+        JLabel percentLabel = new JLabel(maquina.getLabelPercentual() + ": 0.0"); // Rótulo específico
         JButton startButton = new JButton("Ligar Máquina");
 
         final Timer[] timer = {null};
@@ -92,40 +92,34 @@ public class PainelControle extends JFrame implements Subscriber {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isRunning) {
-                    // Liga a máquina
                     isRunning = true;
                     startButton.setText("Desligar Máquina");
 
-                    // Inicializa o timer para atualizar a cada 3 segundos
                     timer[0] = new Timer();
                     timer[0].schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            maquina.monitorar(); // Atualiza os valores da máquina
+                            maquina.monitorar();
                             tempLabel.setText("Temperatura: " + maquina.getTemperatura());
-                            percentLabel.setText("Percentual: " + maquina.getPercentual());
+                            percentLabel.setText(maquina.getLabelPercentual() + ": " + maquina.getPercentual()); // Atualiza com o rótulo correto
                         }
                     }, 0, 3000);
 
                 } else {
-                    // Desliga a máquina
                     isRunning = false;
                     startButton.setText("Ligar Máquina");
 
-                    // Cancela o timer e reseta os valores da máquina
                     if (timer[0] != null) {
                         timer[0].cancel();
                         timer[0] = null;
                     }
 
-                    // Zera os valores exibidos
                     tempLabel.setText("Temperatura: 0.0");
-                    percentLabel.setText("Percentual: 0.0");
+                    percentLabel.setText(maquina.getLabelPercentual() + ": 0.0");
                 }
             }
         });
 
-        // Adicionando os componentes ao painel com layout organizado
         gbc.gridy = 0;
         panel.add(new JLabel(type), gbc);
 

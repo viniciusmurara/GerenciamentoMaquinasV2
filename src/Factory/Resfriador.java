@@ -24,6 +24,11 @@ public class Resfriador extends Maquina implements MaquinaFactory {
         }
     }
 
+    @Override
+    public String getLabelPercentual() {
+        return "Humidade";
+    }
+
     private double gerarTemperaturaAleatoria(double min, double max) {
         return min + Math.random() * (max - min);
     }

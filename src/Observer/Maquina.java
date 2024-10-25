@@ -22,7 +22,8 @@ public abstract class Maquina {
         }
     }
 
-    public abstract void monitorar(); // Método abstrato para lógica de monitoramento específica
+    public abstract void monitorar(); // metodo abstrato para lógica de monitoramento específica
+    public abstract String getLabelPercentual(); // metodo que muda de maquina para maquina
 
     // Getters para atributos
     public double getTemperatura() {

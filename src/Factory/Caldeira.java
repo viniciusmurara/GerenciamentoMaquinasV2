@@ -24,6 +24,11 @@ public class Caldeira extends Maquina implements MaquinaFactory {
         }
     }
 
+    @Override
+    public String getLabelPercentual() {
+        return "Capacidade";
+    }
+
     private double gerarTemperaturaAleatoria(double min, double max) {
         return min + Math.random() * (max - min);
     }
