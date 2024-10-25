@@ -17,8 +17,12 @@ public class Resfriador extends Maquina implements MaquinaFactory {
         this.temperatura = arredondarValor(gerarTemperaturaAleatoria(-25, 25));
         this.percentual = arredondarValor(gerarPercentualAleatorio());
 
-        if (temperatura >= 15 || temperatura <= -15) {
-            this.alerta = "Alerta: Resfriador em anomalia!";
+        if (temperatura >= 15) {
+            this.alerta = "Alerta! Temperatura do Resfriador alta.";
+            this.alerta = funcionario.update(this);
+            notifySubscribers();
+        } else if (temperatura <= -15) {
+            this.alerta = "Alerta! Temperatura do Resfriador baixa.";
             this.alerta = funcionario.update(this);
             notifySubscribers();
         }
