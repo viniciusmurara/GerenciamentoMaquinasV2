@@ -17,8 +17,12 @@ public class Caldeira extends Maquina implements MaquinaFactory {
         this.temperatura = arredondarValor(gerarTemperaturaAleatoria(50, 100));
         this.percentual = arredondarValor(gerarPercentualAleatorio());
 
-        if (temperatura >= 90 || temperatura <= 60) {
-            this.alerta = "Alerta: Caldeira em anomalia!";
+        if (temperatura >= 90) {
+            this.alerta = "Alerta: Temperatura da Caldeira alta!";
+            this.alerta = funcionario.update(this);
+            notifySubscribers();
+        } else if(temperatura <= 60) {
+            this.alerta = "Alerta! Temperatura da Caldeira baixa!";
             this.alerta = funcionario.update(this);
             notifySubscribers();
         }

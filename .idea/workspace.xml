@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e653cc2-82b2-4a2d-b35a-955418e661f3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/Caldeira.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/Caldeira.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/Resfriador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/Resfriador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Observer/Maquina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/Maquina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Observer/PainelControle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/PainelControle.java" afterDir="false" />
-    </list>
+    <list default="true" id="7e653cc2-82b2-4a2d-b35a-955418e661f3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +50,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Profº Murara/OneDrive - ASSOCIACAO DO CENTRO DE INOVACAO JARAGUA DO SUL/Documentos/GitHub/GerenciamentoMaquinasV2",
+    "last_opened_file_path": "C:/Users/vinicius_murara/Documents/GitHub/GerenciamentoMaquinasV2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,6 +79,7 @@
       <updated>1729848962668</updated>
       <workItem from="1729848963877" duration="18000" />
       <workItem from="1729849106118" duration="8854000" />
+      <workItem from="1729874070924" duration="2400000" />
     </task>
     <servers />
   </component>

@@ -37,7 +37,7 @@ public class PainelControle extends JFrame implements Subscriber {
         alertListModel = new DefaultListModel<>();
         JList<String> alertList = new JList<>(alertListModel);
         JScrollPane alertScrollPane = new JScrollPane(alertList);
-        alertScrollPane.setPreferredSize(new Dimension(250, 0));
+        alertScrollPane.setPreferredSize(new Dimension(300, 0));
         alertScrollPane.setBorder(BorderFactory.createTitledBorder("Alertas"));
 
         // Painel de controle para adicionar máquinas
@@ -81,7 +81,7 @@ public class PainelControle extends JFrame implements Subscriber {
         gbc.anchor = GridBagConstraints.WEST;
 
         JLabel tempLabel = new JLabel("Temperatura: 0.0");
-        JLabel percentLabel = new JLabel(maquina.getLabelPercentual() + ": 0.0"); // Rótulo específico
+        JLabel percentLabel = new JLabel(maquina.getLabelPercentual() + ": 0.0");
         JButton startButton = new JButton("Ligar Máquina");
 
         final Timer[] timer = {null};
@@ -101,7 +101,7 @@ public class PainelControle extends JFrame implements Subscriber {
                         public void run() {
                             maquina.monitorar();
                             tempLabel.setText("Temperatura: " + maquina.getTemperatura());
-                            percentLabel.setText(maquina.getLabelPercentual() + ": " + maquina.getPercentual()); // Atualiza com o rótulo correto
+                            percentLabel.setText(maquina.getLabelPercentual() + ": " + maquina.getPercentual());
                         }
                     }, 0, 3000);
 
