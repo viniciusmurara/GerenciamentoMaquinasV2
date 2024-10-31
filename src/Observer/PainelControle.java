@@ -59,17 +59,42 @@ public class PainelControle extends JFrame implements Subscriber {
         add(mainPanel);
     }
 
-    private void addMachine(String type) {
-        Maquina maquina;
+
+    // metodo utilitário para criar ou clonar uma máquina
+    private Maquina createOrCloneMachine(String type) {
+        // Procura uma máquina do tipo solicitado para clonagem
+        for (Maquina m : maquinas) {
+            if ((type.equals("Caldeira") && m instanceof Caldeira) || (type.equals("Resfriador") && m instanceof Resfriador)) {
+                try {
+                    return (Maquina) ((Prototype.CloneableMaquina) m).clone();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Cria uma nova instância caso não encontre uma máquina para clonar
         if (type.equals("Caldeira")) {
-            maquina = new Caldeira();
-        } else {
-            maquina = new Resfriador();
+            return new Caldeira();
+        } else if (type.equals("Resfriador")) {
+            return new Resfriador();
+        }
+
+        return null; // Caso o tipo não seja encontrado
+    }
+
+    private void addMachine(String type) {
+        // Utiliza o metodo utilitário para criar ou clonar a máquina
+        Maquina maquina = createOrCloneMachine(type);
+        if (maquina == null) {
+            JOptionPane.showMessageDialog(this, "Tipo de máquina inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
         maquina.subscribe(this);
         maquinas.add(maquina);
 
+        // Painel da nova máquina clonada
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), type, TitledBorder.CENTER, TitledBorder.TOP));
@@ -86,6 +111,7 @@ public class PainelControle extends JFrame implements Subscriber {
 
         final Timer[] timer = {null};
 
+        Maquina finalMaquina = maquina;
         startButton.addActionListener(new ActionListener() {
             private boolean isRunning = false;
 
@@ -99,9 +125,9 @@ public class PainelControle extends JFrame implements Subscriber {
                     timer[0].schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            maquina.monitorar();
-                            tempLabel.setText("Temperatura: " + maquina.getTemperatura());
-                            percentLabel.setText(maquina.getLabelPercentual() + ": " + maquina.getPercentual());
+                            finalMaquina.monitorar();
+                            tempLabel.setText("Temperatura: " + finalMaquina.getTemperatura());
+                            percentLabel.setText(finalMaquina.getLabelPercentual() + ": " + finalMaquina.getPercentual());
                         }
                     }, 0, 3000);
 
@@ -115,7 +141,7 @@ public class PainelControle extends JFrame implements Subscriber {
                     }
 
                     tempLabel.setText("Temperatura: 0.0");
-                    percentLabel.setText(maquina.getLabelPercentual() + ": 0.0");
+                    percentLabel.setText(finalMaquina.getLabelPercentual() + ": 0.0");
                 }
             }
         });
@@ -137,6 +163,8 @@ public class PainelControle extends JFrame implements Subscriber {
         machinePanel.revalidate();
         machinePanel.repaint();
     }
+
+
 
     @Override
     public String update(Maquina maquina) {

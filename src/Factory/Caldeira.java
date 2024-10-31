@@ -2,8 +2,9 @@ package Factory;
 
 import Observer.Funcionario;
 import Observer.Maquina;
+import Prototype.CloneableMaquina;
 
-public class Caldeira extends Maquina implements MaquinaFactory {
+public class Caldeira extends Maquina implements MaquinaFactory, CloneableMaquina {
 
     Funcionario funcionario = new Funcionario("Operador");
 
@@ -31,6 +32,11 @@ public class Caldeira extends Maquina implements MaquinaFactory {
     @Override
     public String getLabelPercentual() {
         return "Capacidade";
+    }
+
+    @Override
+    public Caldeira clone() throws CloneNotSupportedException {
+        return (Caldeira) super.clone();
     }
 
     private double gerarTemperaturaAleatoria(double min, double max) {
