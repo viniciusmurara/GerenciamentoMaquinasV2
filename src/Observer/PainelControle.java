@@ -28,7 +28,7 @@ public class PainelControle extends JFrame implements Subscriber {
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
 
         // Painel de máquinas com GridLayout de duas colunas e múltiplas linhas
-        machinePanel = new JPanel(new GridLayout(0, 2, 10, 10));
+        machinePanel = new JPanel(new GridLayout(0, 3, 10, 10));
         machinePanel.setBorder(BorderFactory.createTitledBorder("Máquinas"));
         JScrollPane machineScrollPane = new JScrollPane(machinePanel);
         machineScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -66,9 +66,10 @@ public class PainelControle extends JFrame implements Subscriber {
         for (Maquina m : maquinas) {
             if ((type.equals("Caldeira") && m instanceof Caldeira) || (type.equals("Resfriador") && m instanceof Resfriador)) {
                 try {
-                    return (Maquina) ((Prototype.CloneableMaquina) m).clone();
+                    return ((Prototype.CloneableMaquina) m).clone();
                 } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
+                    System.out.println("Máquina: " + e.getMessage() + " foi clonada!");
+                    break;
                 }
             }
         }
@@ -84,7 +85,7 @@ public class PainelControle extends JFrame implements Subscriber {
     }
 
     private void addMachine(String type) {
-        // Utiliza o metodo utilitário para criar ou clonar a máquina
+        // Utiliza o método utilitário para criar ou clonar a máquina
         Maquina maquina = createOrCloneMachine(type);
         if (maquina == null) {
             JOptionPane.showMessageDialog(this, "Tipo de máquina inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -108,6 +109,7 @@ public class PainelControle extends JFrame implements Subscriber {
         JLabel tempLabel = new JLabel("Temperatura: 0.0");
         JLabel percentLabel = new JLabel(maquina.getLabelPercentual() + ": 0.0");
         JButton startButton = new JButton("Ligar Máquina");
+        JButton removeButton = new JButton("Remover Máquina");
 
         final Timer[] timer = {null};
 
@@ -146,6 +148,20 @@ public class PainelControle extends JFrame implements Subscriber {
             }
         });
 
+        removeButton.addActionListener(e -> {
+            // Para o monitoramento e remove a máquina do sistema
+            if (timer[0] != null) {
+                timer[0].cancel();
+            }
+            finalMaquina.unsubscribe(this); // Remove do Observer
+            maquinas.remove(finalMaquina);  // Remove da lista de máquinas
+            machinePanel.remove(panel);     // Remove o painel da máquina
+
+            // Atualiza o painel de máquinas na interface
+            machinePanel.revalidate();
+            machinePanel.repaint();
+        });
+
         gbc.gridy = 0;
         panel.add(new JLabel(type), gbc);
 
@@ -158,6 +174,9 @@ public class PainelControle extends JFrame implements Subscriber {
         gbc.gridy++;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(startButton, gbc);
+
+        gbc.gridy++;
+        panel.add(removeButton, gbc);
 
         machinePanel.add(panel);
         machinePanel.revalidate();

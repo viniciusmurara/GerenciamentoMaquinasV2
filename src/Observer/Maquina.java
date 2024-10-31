@@ -1,8 +1,11 @@
 package Observer;
 
-import java.util.ArrayList;
+import Prototype.CloneableMaquina;
 
-public abstract class Maquina {
+import java.util.ArrayList;
+import java.util.Objects;
+
+public abstract class Maquina implements CloneableMaquina {
     private ArrayList<Subscriber> subscribers = new ArrayList<>();
     protected double temperatura;
     protected double percentual;
@@ -24,6 +27,10 @@ public abstract class Maquina {
 
     public abstract void monitorar(); // metodo abstrato para lógica de monitoramento específica
     public abstract String getLabelPercentual(); // metodo que muda de maquina para maquina
+    @Override
+    public Maquina clone() throws CloneNotSupportedException {
+        return (Maquina) super.clone();
+    }
 
     // Getters para atributos
     public double getTemperatura() {
