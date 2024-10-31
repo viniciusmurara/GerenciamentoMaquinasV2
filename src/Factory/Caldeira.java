@@ -27,6 +27,12 @@ public class Caldeira extends Maquina implements MaquinaFactory, CloneableMaquin
             this.alerta = funcionario.update(this);
             notifySubscribers();
         }
+
+        if(percentual < 15){
+            this.alerta = "Alerta! Nível da Caldeira baixo!";
+            this.alerta = funcionario.update(this);
+            notifySubscribers();
+        }
     }
 
     @Override

@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f2253c8c-a120-455f-b0a2-27c8f44634ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GerenciamentoMaquinasV2/Factory/Caldeira.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GerenciamentoMaquinasV2/Factory/Caldeira.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GerenciamentoMaquinasV2/Factory/Resfriador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GerenciamentoMaquinasV2/Factory/Resfriador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/Caldeira.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/Caldeira.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/Resfriador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/Resfriador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730408472212</updated>
-      <workItem from="1730408473559" duration="2269000" />
+      <workItem from="1730408473559" duration="3138000" />
     </task>
     <servers />
   </component>

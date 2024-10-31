@@ -19,11 +19,17 @@ public class Resfriador extends Maquina implements MaquinaFactory, CloneableMaqu
         this.percentual = arredondarValor(gerarPercentualAleatorio());
 
         if (temperatura >= 15) {
-            this.alerta = "Alerta! Temperatura do Resfriador alta.";
+            this.alerta = "Alerta! Temperatura do Resfriador alta!";
             this.alerta = funcionario.update(this);
             notifySubscribers();
         } else if (temperatura <= -15) {
-            this.alerta = "Alerta! Temperatura do Resfriador baixa.";
+            this.alerta = "Alerta! Temperatura do Resfriador baixa!";
+            this.alerta = funcionario.update(this);
+            notifySubscribers();
+        }
+
+        if(percentual > 85){
+            this.alerta = "Alerta! Humidade do Resfriador alta!";
             this.alerta = funcionario.update(this);
             notifySubscribers();
         }
@@ -35,7 +41,7 @@ public class Resfriador extends Maquina implements MaquinaFactory, CloneableMaqu
     }
 
     @Override
-    public Resfriador clone() throws CloneNotSupportedException{
+    public Resfriador clone() throws CloneNotSupportedException {
         return (Resfriador) super.clone();
     }
 
