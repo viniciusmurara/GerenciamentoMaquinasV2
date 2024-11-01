@@ -85,7 +85,6 @@ public class PainelControle extends JFrame implements Subscriber {
     }
 
     private void addMachine(String type) {
-        // Utiliza o método utilitário para criar ou clonar a máquina
         Maquina maquina = createOrCloneMachine(type);
         if (maquina == null) {
             JOptionPane.showMessageDialog(this, "Tipo de máquina inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
